@@ -37,6 +37,7 @@
         <div class="row mt-5">
             <div class="col-md-2"></div>
             <div class="col-md-8">
+                <div class="col-5"><label for="#search">Search Record : </label><input type="text" id="search" class="form-control mb-4" placeholder="search here"></div>
                 <table class="table">
                     <thead>
                         <tr>
@@ -107,6 +108,21 @@
                     success: function (data) {
                         showdata();
                         alert("Record deleted")
+                    }
+                })
+            })
+
+            $(document).on("keyup","#search",function(){
+                let word = $("#search").val();
+
+                $.ajax({
+                    url: "search.php",
+                    type: "POST",
+                    data: {
+                        sword :word
+                    },
+                    success: function(data){
+                    $("#tdata").html(data);
                     }
                 })
             })
